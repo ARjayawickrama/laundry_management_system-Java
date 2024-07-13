@@ -1,0 +1,62 @@
+package com.order.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.utility.DBconnection;
+
+/**
+ * Servlet implementation class Delete_Order
+ */
+@WebServlet("/Delete_Order")
+public class Delete_Order extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    Connection con;
+    PreparedStatement pst;
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
+
+        rsp.setContentType("text/html");
+        PrintWriter out = rsp.getWriter();
+
+        String userId = req.getParameter("id");
+
+        try {
+            con = DBconnection.getConnection();
+            pst = con.prepareStatement("DELETE FROM order_table WHERE id = ?");
+            pst.setString(1, userId);
+            int rowsDeleted = pst.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                out.println("<font color='green'>Record Deleted Successfully</font>");
+            } else {
+                out.println("<font color='red'>Record Not Found or Deletion Failed</font>");
+            }
+
+        } catch (SQLException ex) {
+            out.println("<font color='red'>Error: " + ex.getMessage() + "</font>");
+        } finally {
+            
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+              
+                e.printStackTrace();
+            }
+        }
+    }
+}

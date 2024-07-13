@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Bootstrap Theme Company Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+     /* Common styles for buttons */
+    .button {
+      display: inline-block;
+      padding: 100px 20px; /* Adjust padding as needed */
+      background-color: #007bff; /* Change color as needed */
+      color: #fff; /* Change text color as needed */
+      text-decoration: none;
+      border: none;
+      border-radius: 5px; /* Adjust border radius as needed */
+      cursor: pointer;
+      font-size: 16px; /* Adjust font size as needed */
+      transition: background-color 0.3s ease; /* Add transition for hover effect */
+    }
+
+    /* Positioning for buttons */
+    .box {
+      border-radius: 5px;
+      position: relative;
+      display: inline-block;
+      margin: 10px; /* Add margin between buttons */
+    }
+
+    /* Media queries for responsiveness */
+    @media screen and (max-width: 767px) {
+      .box {
+        display: block; /* Change to block layout on smaller screens */
+        text-align: center; /* Center-align buttons on smaller screens */
+      }
+    }
+
+    /* Additional styles for specific buttons */
+    .bt1 {
+      background-color: #06732e;
+      padding: 30px 40px; /* Adjust padding for bt1 */
+    }
+
+    .bt2 {
+      padding: 50px 60px; /* Adjust padding for bt2 */
+    }
+
+    .bt3 {
+      padding: 70px 80px; /* Adjust padding for bt3 */
+    }
+
+    /* Hover effect */
+    .button:hover {
+      background-color: #0056b3; /* Change color on hover */
+    }
+    .main{
+      margin-top: 20%;
+     text-align: center;
+
+    }
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <div class="log">
+        </div>
+        <a class="homeBT1" href="user_interface.jsp" target="_blank">Logout</a>
+        <a class="navbar-brand" href="#myPage">MX-LUNDRY </a>
+      </div>
+    </div>
+  </nav>
+
+  <form action="" method="post">
+    <div class="main">
+      <div class="box step" id="step1">
+        <a href="AddOrder.jsp" class="button bt1" onclick="nextStep()">Step 1: Order place</a>
+      </div>
+      <div class="box step" id="step2" style="display: none;">
+        <a href="payment.jsp" class="button bt2" onclick="nextStep()">Step 2: Payment</a>
+      </div>
+      <div class="box step" id="step3" style="display: none;">
+        <a href="login.jsp" class="button bt3" onclick="nextStep()">Step 3: Accounts</a>
+      </div>
+      <div class="box step" id="step4" style="display: none;">
+        <a href="login.jsp" class="button bt3" onclick="nextStep()">Step 4: Inventory</a>
+      </div>
+      <div class="box step" id="step5" style="display: none;">
+        <a href="viewepro" class="button bt2" onclick="nextStep()">Step 5: User Account</a>
+      </div>
+      <div class="box step" id="step6" style="display: none;">
+        <a href="feedback.jsp" class="button bt1" onclick="printPage()">Step 6: Feedback</a>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    var currentStep = 1;
+    var steps = document.getElementsByClassName('step');
+
+    function nextStep() {
+      steps[currentStep - 1].style.display = 'none';
+      currentStep++;
+      if (currentStep <= steps.length) {
+        steps[currentStep - 1].style.display = 'block';
+      } else {
+        // End of steps, do something like show a completion message
+        alert('End of steps reached!');
+      }
+    }
+
+    function printPage() {
+      window.print();
+    }
+  </script>
+</body>
+</html>

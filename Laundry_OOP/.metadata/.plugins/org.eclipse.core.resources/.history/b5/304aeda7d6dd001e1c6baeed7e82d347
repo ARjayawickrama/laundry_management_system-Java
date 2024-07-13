@@ -1,0 +1,105 @@
+package com.user.registration.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/viewepro")
+public class viewepro extends HttpServlet {
+    
+    private static final long serialVersionUID = 1L;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    int row;
+
+    public void doGet(HttpServletRequest req, HttpServletResponse rsp) throws IOException, ServletException {
+        
+        rsp.setContentType("text/html");
+        PrintWriter out = rsp.getWriter();
+        
+        try {
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/laundry?useSSL=false", "root", "1815");
+
+            String sql;
+            
+            sql = "select * from user";
+            Statement stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<style>");
+            out.println("body {");
+            out.println("    background: linear-gradient(to right, #12c2e9, rgb(217, 92, 243), #f64f59);");
+            out.println("    color: white;");
+            out.println("    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;");
+            out.println("}");
+            out.println("table {");
+            out.println("    border: 2px solid white; /* 2px white border */");
+            out.println("    width: 600px;");
+            out.println("    position: absolute;");
+            out.println("    left: 50%;");
+            out.println("    top: 50%;");
+            out.println("    transform: translate(-50%, -50%);");
+            out.println("}");
+            out.println("th, td {");
+            out.println("    text-align: left;");
+            out.println("    padding: 6px;");
+            out.println("}");
+            out.println("a {");
+            out.println("    text-decoration: none;");
+            out.println("    background-color: #04AA6D;");
+            out.println("    border: none;");
+            out.println("    color: white;");
+            out.println("    padding: 5px 20px;");
+            out.println("}");
+            out.println("</style>");
+            out.println("</head>");
+            out.println("<body>");
+            
+            out.println("<table  border='1px'>");
+            out.println("<tr>");
+            out.println("<th>Product ID</th>");
+            out.println("<th>Product Name</th>");
+            out.println("<th>Product Price</th>");
+            out.println("<th>In Stock Quantity</th>");
+            out.println("<th>Edit</th>");
+            out.println("<th>Delete</th>");
+            out.println("</tr>");
+            
+            while(rs.next()) {
+                out.println("<tr>");
+                out.println("<td>" + rs.getString("id") + "</td>");
+                out.println("<td>" + rs.getString("name") + "</td>");
+                out.println("<td>" + rs.getString("price") + "</td>");
+                out.println("<td>" + rs.getString("instock") + "</td>");
+                out.println("<td><a href='Editreturn?id=" + rs.getString("id") + "'>Edit</a></td>");
+                out.println("<td><a href='Delete?id=" + rs.getString("id") + "'>Delete</a></td>");
+                out.println("</tr>");
+            }
+            
+            out.println("</table>");
+            out.println("</body>");
+            out.println("</html>");
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Adduser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            out.println("<font color='red'>Record Failed</font>");
+        }
+    }
+}

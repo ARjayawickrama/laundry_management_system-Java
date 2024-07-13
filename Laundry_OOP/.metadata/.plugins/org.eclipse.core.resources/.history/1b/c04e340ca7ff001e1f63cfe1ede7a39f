@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script >
+ function openNewJSP() {
+    window.location.href = 'View'; 
+}
+ function openNewJSP2() {
+	    window.location.href = 'View'; 
+	}
+ </script>
+    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Step Form with Table</title>
+<style>
+
+  body {
+   
+    margin: 0;
+    padding: 0;
+      background: url('images/14.jpg') no-repeat center center fixed;
+      background-size: 100%; 
+             
+  }
+  
+  
+  .form-container {
+    width: 500px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 5); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out; /* Add fade-in animation */
+   width: 500px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 5); /* Adjust the alpha value (0.8) for transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  form-container2{
+   background-color: black;
+  }
+  /* Styles for form steps */
+  .step {
+    display: none;
+  }
+  
+  .step.active {
+    display: block;
+  }
+  
+  /* Styles for form inputs */
+  input[type="text"],
+  input[type="date"],
+  select,
+  input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  /* Styles for buttons */
+  .button {
+    background-color: rgb(90, 116, 139);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  }
+  .homeBT11{
+   background-color:  rgb(99, 205, 247);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  }
+  .ShowhomeBT{
+    background-color: rgb(90, 116, 139);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  }
+  .homeBT5{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  
+  }
+  .homeBT7{
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  }
+  .homeBT7{
+ margin-bottom: 55px;
+  }
+  .homeBT8{
+    color: white;
+    background-color:rgb(7, 80, 139);
+    border: none;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  
+  }
+  .homeBT9{
+    color: white;
+    background-color:rgb(48, 161, 116);
+    border: none;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  
+  }
+  .button:hover {
+    background-color: rgb(94, 157, 211);
+  }
+  
+
+  #result {
+    margin-top: 20px;
+  }
+  .form-container{
+  position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+     top: 25%;
+  }
+  
+  
+  
+#clothType {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  #clothType th, #clothType td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+     background-color: rgba(255, 255, 255, 5); 
+  }
+      select#clothType1,#clothType2,#clothType3,#clothType4,#clothType5,#clothType6 {
+    width: 100%;
+    background-color: #306772;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    }
+  
+    background-color: #f2f2f2;{
+    color: #333;
+    
+  }
+
+  .form-container{
+   background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+     top: 25%;
+     
+  }
+#step-6 {
+  text-align: center; 
+}
+
+label {
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #333; 
+    margin-bottom: 10px; 
+    display: block; 
+}
+ #result {
+            text-align: center; 
+            font-size: 50px; 
+        }
+ .table-container {
+     
+    max-height: 300px;
+    overflow-y: auto; 
+  }
+.form-container {
+   margin-bottom: 200px;
+}
+
+
+
+@media screen and (max-width: 400px) {
+    body {
+        background-size: 100% auto;
+    }
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<form id="multi-step-form" method="post" action="Addorder" onsubmit="return showConfirmation()"> 
+
+
+    <div class="form-container">
+      <div class="step active" id="step-1">
+        <label for="CustomerID">Customer_Name</label>
+
+        <input type="text" id="CustomerID" placeholder="Customer_Name" name="CustomerID" required>
+       
+        <button type="button" class="button" onclick="nextStep(1)" >Next </button>
+        <a class="ShowhomeBT" onclick="openNewJSP()"id="navigateUpdate"target="_blank">View Details</a>
+   
+      </div>
+      
+      <div class="step" id="step-2">
+        <label for="OrderDate">OrderDate</label>
+        <input type="date" id="OrderDate" placeholder="Contact" name="OrderDate" required>
+        <button type="button" class="button" onclick="nextStep(2)">Next</button>
+        <button type="button" class="homeBT5" onclick="prevStep(2)">Previous</button>
+      </div>
+      
+     <div class="mainstep">
+     <div class="step" id="step-3">
+        <div class="table-container">
+          <table id="clothType" class="anjutabe">
+            <thead>
+              <tr>
+                <th>Cloth Type</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <select id="clothType1" name="type1">
+                    <option value="No">No</option>
+                    <option value="Towels ">Towels</option>
+                    <option value="Bedsheets">Bedsheets</option>
+                    <option value="Pillow cases">Pillow cases</option>
+                    <option value="Curtains">Curtains</option>
+                    <option value="Trouser">Trouser</option>
+                    <option value="Blouse">Blouse</option>
+                  </select>
+                </td>
+                <td><input type="number" class="quantity-input" id="1-quantity" name="inquantity1"></td>
+              </tr>
+              <tr>
+                <td>
+                  <select id="clothType2" name="type2">
+                    <option value="No">No</option>
+                    <option value="Towels">Towels</option>
+                    <option value="Bedsheets">Bedsheets</option>
+                    <option value="Pillow cases">Pillow cases</option>
+                    <option value="Curtains">Curtains</option>
+                    <option value="Trouser">Trouser</option>
+                    <option value="Blouse">Blouse</option>
+                  </select>
+                </td>
+                <td><input type="number" class="quantity-input" id="2-quantity" name="inquantity2"></td>
+              </tr>
+              <tr>
+                <td>
+                  <select id="clothType3" name="type3">
+                    <option value="No">No</option>
+                    <option value="Towels">Towels</option>
+                    <option value="Bedsheets">Bedsheets</option>
+                    <option value="Pillow cases">Pillow cases</option>
+                    <option value="Curtains">Curtains</option>
+                    <option value="Trouser">Trouser</option>
+                    <option value="Blouse">Blouse</option>
+                  </select>
+                </td>
+                <td><input type="number" class="quantity-input" id="3-quantity" name="inquantity3"></td>
+              </tr>
+              <tr>
+                <td>
+                  <select id="clothType4" name="type4">
+                    <option value="No">No</option>
+                    <option value="Towels">Towels</option>
+                    <option value="Bedsheets">Bedsheets</option>
+                    <option value="Pillow cases">Pillow cases</option>
+                    <option value="Curtains">Curtains</option>
+                    <option value="Trouser">Trouser</option>
+                    <option value="Blouse">Blouse</option>
+                  </select>
+                </td>
+                <td><input type="number" class="quantity-input" id="4-quantity" name="inquantity4"></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="clothType5" name="type5">
+                        <option value="No">No</option>
+                        <option value="Towels">Towels</option>
+                        <option value="Bedsheets">Bedsheets</option>
+                        <option value="Pillow cases">Pillow cases</option>
+                        <option value="Curtains">Curtains</option>
+                        <option value="Trouser">Trouser</option>
+                        <option value="Blouse">Blouse</option>
+                    </select>
+                </td>
+                <td><input type="number" class="quantity-input" id="5-quantity" name="inquantity5"></td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="clothType6" name="type6">
+                        <option value="No">No</option>
+                        <option value="Towels">Towels</option>
+                        <option value="Bedsheets">Bedsheets</option>
+                        <option value="Pillow cases">Pillow cases</option>
+                        <option value="Curtains">Curtains</option>
+                        <option value="Trouser">Trouser</option>
+                        <option value="Blouse">Blouse</option>
+                    </select>
+                </td>
+                <td><input type="number" class="quantity-input" id="6-quantity" name="inquantity6"></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <p id="quantity"></p>
+ <button type="button" class="homeBT11" onclick="quantity_calculateSum()">Quantity</button>
+    <button type="button" class="button" onclick="nextStep(3)">Next</button>
+       <button type="button" class="homeBT5" onclick="prevStep(3)">Previous</button>
+</div>
+</div>
+
+    
+    <!-- Fourth Step -->
+    <div class="step" id="step-4">
+       
+        <label for="clothType">Enter Cloth Weight Type</label>
+        <select id="optionValue" name="clothType">
+            <option value="1">Kilograms</option>
+            <option value="2">Grams</option>
+        </select>
+
+      <button type="button" class="button" onclick="nextStep(4)" id="step-4-button">Next</button>
+         <button type="button" class="homeBT5" onclick="prevStep(4)">Previous</button>
+    </div>
+    
+      <div class="step" id="step-5">
+        <label for="weight">Enter Weight</label>
+        <input type="number" id="weight" placeholder="Enter Weight" name="weight" required>
+
+      <button type="button" class="button" onclick="nextStep(5)" id="step-5-button">Next</button>
+       <button type="button" class="homeBT5" onclick="prevStep(5)">Previous</button>
+    </div>
+    
+
+<div class="step" id="step-6" >
+  <p id="result"></p>
+  <button type="button" class="homeBT7" onclick="prevStep(6)">Previous</button>
+ 
+  <button type="button" class="homeBT8" onclick="calculateSum()">Calculate</button>
+       <input class="homeBT9"  type="submit" value="Submit" name="oder-add"  > 
+
+
+  </div>
+</div>
+
+</form>
+<script>
+
+function calculateSum() {
+    var optionValue = parseInt(document.getElementById("optionValue").value) || 0;;
+    var weight = parseInt(document.getElementById("weight").value) || 0;;
+    var add;
+
+    if (optionValue === 1) {
+        add = 100;
+    } else if (optionValue === 2) {
+        add = 20;
+    }
+
+    var sum = add * weight;
+
+    document.getElementById("result").innerHTML = "Total: " + sum +"Rs";
+}
+
+
+function quantity_calculateSum(){
+    var quantity1 = parseInt(document.getElementById("1-quantity").value) || 0; 
+    var quantity2 = parseInt(document.getElementById("2-quantity").value) || 0; 
+    var quantity3 = parseInt(document.getElementById("3-quantity").value) || 0; 
+    var quantity4 = parseInt(document.getElementById("4-quantity").value) || 0; 
+    var quantity5 = parseInt(document.getElementById("5-quantity").value) || 0; 
+    var quantity6 = parseInt(document.getElementById("6-quantity").value) || 0;
+
+    var sum = quantity1 + quantity2 + quantity3+ quantity4+ quantity5+ quantity6;
+
+    document.getElementById("quantity").innerHTML = "Quantity: " + sum ;
+}
+
+
+
+function nextStep(currentStep) {
+    var isValid = true;
+
+    if (currentStep === 1) {
+        var customerID = document.getElementById('CustomerID').value;
+        if (customerID.trim() === '') {
+            alert('Please Enter a Customer Name.');
+            isValid = false;
+        } else if (customerID.trim() === '0') { 
+            alert('Customer Name Cannot be 0.');
+            isValid = false;
+        }
+        else if (customerID.trim() <= 0) { 
+            alert('Customer Name Cannot be -1.');
+            isValid = false;
+        }
+    } else if (currentStep === 2) {
+        var orderDate = document.getElementById('OrderDate').value;
+        if (orderDate.trim() === '') {
+            alert('Please select an Order Date.');
+            isValid = false;
+        }
+    } else if (currentStep === 3) {
+    	
+    } else if (currentStep === 5) {
+        var weight = document.getElementById('weight').value;
+        if (weight.trim() === '') {
+            alert('Please select weight.');
+            isValid = false;
+        }
+    }
+
+    if (isValid) {
+        document.getElementById('step-' + currentStep).classList.remove('active');
+        document.getElementById('step-' + (currentStep + 1)).classList.add('active');
+    }
+}
+
+
+function prevStep(currentStep) {
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    document.getElementById('step-' + (currentStep - 1)).classList.add('active');
+}
+
+
+
+function showConfirmation() {
+    
+    var confirmation = confirm(" Add the order?");
+    if (confirmation) {
+      
+        alert("Order ADD!");
+     
+    } else {
+       
+        alert("Order canceled.");
+        return false;
+    }
+}
+
+
+function validateWeight() {
+    var weightInput = document.getElementById("weight");
+    var weight = parseFloat(weightInput.value);
+
+    if (isNaN(weight) || weight <= 0 || weight > 500) {
+        
+        alert("Maximum weight allowed is 500 kg.");
+        weightInput.value = "";
+        weightInput.focus(); 
+        return false; 
+    } else {
+        return true;
+    }
+}
+
+
+document.getElementById("weight").addEventListener("input", validateWeight);
+
+</script>
+
+
+</body>
+</html>

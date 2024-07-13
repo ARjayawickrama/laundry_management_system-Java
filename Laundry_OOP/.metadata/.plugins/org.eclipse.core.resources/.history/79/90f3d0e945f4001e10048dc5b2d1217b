@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Bootstrap Theme Company Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+    background: url('images/11.jpg') no-repeat center center fixed;
+    background-size: 100%; 
+  }
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <div class="log">
+        </div>
+        <a class="homeBT1" href="user_interface.jsp" target="_blank">Logout</a>
+        <a class="navbar-brand" href="#myPage">MX-LUNDRY </a>
+      </div>
+    </div>
+  </nav>
+
+    
+  
+ 
+  
+  <script>
+    // Get a reference to the button element
+    var button = document.getElementById('navigateButton');
+    // Add a click event listener to the button
+    button.onclick = function() {
+      // Navigate to the index.jsp page when the button is clicked
+      window.location = 'AddOrder.jsp';
+    };
+    var button = document.getElementById('navigateButton2');
+    button.onclick = function() {
+      // Navigate to the index.jsp page when the button is clicked
+      window.location = 'payment.jsp';
+    };
+  </script>
+</body>
+</html>

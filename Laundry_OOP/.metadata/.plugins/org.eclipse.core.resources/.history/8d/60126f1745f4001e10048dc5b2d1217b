@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Bootstrap Theme Company Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+    background: url('images/11.jpg') no-repeat center center fixed;
+    background-size: 100%; 
+  }
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }  
+  .jumbotron {
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+    padding: 60px 50px;
+  }
+
+  .button-container {
+    text-align: center;
+  }
+  .homeBT2, .homeBT3, .homeBT4, .homeBT5, .homeBT6 {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    border: 1px solid #F0F8FF;
+    border-radius: 15px;
+    text-align: center;
+    margin: 10px;
+    font-size: 30px;
+    font-family: Georgia, serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .homeBT1 {
+    padding: 5px px;
+    color: #ccc;
+    position: absolute;
+    top:15%;
+    left: 90%;
+  }
+  .homeBT2 {
+    padding: 30px 40px;
+    background-color: Coral;
+  }
+  .homeBT3 {
+    padding: 40px 50px;
+    background-color: MediumSeaGreen;
+  }
+  .homeBT4 {
+    padding: 50px 60px;
+    background-color: Gold;
+  }
+  .homeBT5 {
+    padding: 50px 50px;
+    background-color: DarkOrange;
+  }
+  .homeBT1:hover, .homeBT2:hover, .homeBT3:hover, .homeBT4:hover, .homeBT5:hover, .homeBT6:hover {
+    background-color: black;
+    color: white;
+  }
+  .logoutButton {
+    padding: 10px 10px;
+    background-color: darkred;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 10px;
+    font-family: Georgia, serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .logoutButton:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  .containerMain{
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    transform: translateY(-50%);
+  }
+  .an{
+    position: absolute;
+    right:25px;
+  }
+  .homeBT6{
+    padding: 60px 70px;
+    background-color: DarkSlateGray;
+  }
+  a:link {
+    text-decoration: none;
+  }
+  
+
+    /* Positioning for buttons */
+    .box {
+      position: relative;
+      display: inline-block;
+      margin: 10px; /* Add margin between buttons */
+    }
+
+    /* Media queries for responsiveness */
+    @media screen and (max-width: 767px) {
+      .box {
+        display: block; /* Change to block layout on smaller screens */
+        text-align: center; /* Center-align buttons on smaller screens */
+      }
+    }
+
+    /* Additional styles for specific buttons */
+    .bt1 {
+      padding: 30px 40px; /* Adjust padding for bt1 */
+    background-color: #0296d5;
+    }
+      .bt4 {
+     
+      background-color: #ff9500;
+    }
+     
+
+    .bt2 {
+     background-color: #ff5b03;
+      padding: 50px 60px; /* Adjust padding for bt2 */
+    }
+ .bt5 {
+     
+        background-color: #06732e;
+    }
+    
+    .bt3 {
+      padding: 70px 80px; /* Adjust padding for bt3 */
+    }
+    .main{
+      margin-top: 20%;
+     text-align: center;
+    }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <div class="log">
+        </div>
+        <a class="homeBT1" href="user_interface.jsp" target="_blank">Logout</a>
+        <a class="navbar-brand" href="#myPage">MX-LUNDRY </a>
+      </div>
+    </div>
+  </nav>
+
+    <br>
+    <div class="main">
+      <div class="box">
+      <a href="AddOrder.jsp" class="button bt1">Order place</a>
+    </div>
+    <div class="box">
+      <a href="payment.jsp" class="button bt2">Payment</a>
+    </div>
+    <% 
+    String username = (String) session.getAttribute("username");
+    if(username != null && !username.isEmpty()) { 
+    %>
+    Welcome, <%= username %>!
+          <div class="box">
+      <a href="login.jsp" class="button bt3">Accounts</a>
+    </div>
+    <div class="box">
+    <a href="login.jsp" class="button bt3">Inventory</a>
+  </div>
+    <% } %>
+
+      <div class="box">
+    <a href="viewepro" class="button bt2 bt5">User Account</a>
+    </div>
+    <div class="box">
+    <a href="feedback.jsp" class="button bt1 bt4">FeddBack</a>
+  </div>
+  </div>
+  
+  
+ 
+  
+  <script>
+    // Get a reference to the button element
+    var button = document.getElementById('navigateButton');
+    // Add a click event listener to the button
+    button.onclick = function() {
+      // Navigate to the index.jsp page when the button is clicked
+      window.location = 'AddOrder.jsp';
+    };
+    var button = document.getElementById('navigateButton2');
+    button.onclick = function() {
+      // Navigate to the index.jsp page when the button is clicked
+      window.location = 'payment.jsp';
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+package com.order.servlet;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.utility.DBconnection;
+
+/**
+ * Servlet implementation class Delete_Order
+ */
+@WebServlet("/Delete_Order")
+public class Delete_Order extends HttpServlet {
+	   private static final long serialVersionUID = 1L;
+	    Connection con;
+	    PreparedStatement pst;
+
+	    @Override
+	    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+	     +
+	        try {
+	            con = DBconnection.getConnection();
+
+	            pst = con.prepareStatement("DELETE FROM order_table WHERE id = ?");
+
+	         
+
+	            int rowCount = pst.executeUpdate();
+
+	            RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
+
+	            if (rowCount > 0) {
+	                req.setAttribute("status", "success");
+	            } else {
+	                req.setAttribute("status", "fail");
+	            }
+
+	            dispatcher.forward(req, resp);
+	        } catch (Exception e) {
+	            e.printStackTrace(); // Handle this exception properly in a production environment
+	        } finally {
+	            try {
+	                if (pst != null) {
+	                    pst.close();
+	                }
+	                if (con != null) {
+	                    con.close();
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}

@@ -1,0 +1,61 @@
+package com.order.servlet;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.utility.DBconnection;
+
+@WebServlet("/UpdateOrder")
+
+public class updateOrderServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public updateOrderServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		
+        order orderset = new order();
+		
+		String orderid = request.getParameter("orderid");
+		
+		
+		orderset.setOrderID(orderid);
+		orderset.setCustomerID(request.getParameter("cusid"));
+		orderset.setOrderDate(request.getParameter("OrderDate"));
+		orderset.setTotalAmount(request.getParameter("TotalAmount"));
+		
+		
+		Iorderservice orderService = new orderserviceImpl();
+		orderService.updateorder(orderid, orderset);
+		
+		request.setAttribute("orderid", orderid);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/allOrders.jsp");
+		dispatcher.forward(request, response);
+	}
+
+}

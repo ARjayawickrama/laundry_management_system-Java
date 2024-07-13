@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+D:\Laundry_OOP\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1144700912.index
+2790340584.index
+898804921.index
+3459981222.index
+2043714833.index
+2077392459.index
+3723207503.index
